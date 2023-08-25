@@ -7,6 +7,5 @@ import lombok.Value;
 @Value
 @Builder
 public class PessoaResponse {
-
     private UUID idPessoa;
 }
