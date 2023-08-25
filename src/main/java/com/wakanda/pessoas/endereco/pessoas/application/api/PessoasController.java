@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @Log4j2
 @RestController
 @RequiredArgsConstructor
@@ -18,5 +20,13 @@ public class PessoasController implements PessoasAPI {
         PessoaResponse pessoaCriada = pessoaService.criaPessoa(pessoaRequest);
         log.info("[finaliza] PessoaController - criaPessoa");
         return pessoaCriada;
+    }
+
+    @Override
+    public List<ListaPessoasResponse> listaPessoas() {
+        log.info("[inicia] PessoaController - listarPessoas");
+        List<ListaPessoasResponse> pessoas = pessoaService.listaPessoas();
+        log.info("[finaliza] PessoaController - listarPessoas");
+        return pessoas;
     }
 }
