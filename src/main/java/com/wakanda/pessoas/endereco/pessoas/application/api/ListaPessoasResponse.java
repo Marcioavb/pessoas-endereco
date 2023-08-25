@@ -14,7 +14,6 @@ public class ListaPessoasResponse {
     private String nomeCompleto;
     private LocalDate dataNascimento;
 
-
     public static List<ListaPessoasResponse> converte(List<Pessoa> pessoas) {
         return pessoas.stream()
                 .map(ListaPessoasResponse::new)

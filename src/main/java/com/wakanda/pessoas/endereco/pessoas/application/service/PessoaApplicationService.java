@@ -1,5 +1,8 @@
 package com.wakanda.pessoas.endereco.pessoas.application.service;
 
+import com.wakanda.pessoas.endereco.endereco.application.repository.EnderecoRepository;
+import com.wakanda.pessoas.endereco.endereco.domain.Endereco;
+import com.wakanda.pessoas.endereco.endereco.domain.enums.TipoEndereco;
 import com.wakanda.pessoas.endereco.pessoas.application.api.*;
 import com.wakanda.pessoas.endereco.pessoas.application.repository.PessoaRepository;
 import com.wakanda.pessoas.endereco.pessoas.domain.Pessoa;
@@ -16,7 +19,7 @@ import java.util.UUID;
 public class PessoaApplicationService implements PessoaService {
 
     private final PessoaRepository pessoaRepository;
-    //private final EnderecoRepository enderecoRepository;
+    private final EnderecoRepository enderecoRepository;
 
     @Override
     public PessoaResponse criaPessoa(PessoaRequest pessoaRequest) {
@@ -40,9 +43,9 @@ public class PessoaApplicationService implements PessoaService {
     public ConsultaPessoaResponse consultaPessoaAtravesId(UUID idPessoa) {
         log.info("[inicia] PessoaApplicationService - consultaPessoaAtravesId");
         Pessoa pessoa = pessoaRepository.consultaPessoaAtravezId(idPessoa);
-        //Endereco enderecoPrincipal = enderecoRepository.findEnderecoPrincipal(idPessoa, TipoEndereco.PRINCIPAL);
+        Endereco enderecoPrincipal = enderecoRepository.findEnderecoPrincipal(idPessoa, TipoEndereco.PRINCIPAL);
         log.info("[finaliza] PessoaApplicationService - consultaPessoaAtravesId");
-        return new ConsultaPessoaResponse(pessoa);
+        return new ConsultaPessoaResponse(pessoa, enderecoPrincipal);
     }
 
     @Override

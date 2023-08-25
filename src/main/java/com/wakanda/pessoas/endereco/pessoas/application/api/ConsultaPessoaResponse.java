@@ -13,13 +13,13 @@ public class ConsultaPessoaResponse {
     private UUID idPessoa;
     private String nomeCompleto;
     private LocalDate dataNascimento;
-    //private Endereco enderecoPrincipal;
+    private Endereco enderecoPrincipal;
 
-    public ConsultaPessoaResponse(Pessoa pessoa) {
+    public ConsultaPessoaResponse(Pessoa pessoa, Endereco enderecoPrincipal) {
         this.idPessoa = pessoa.getIdPessoa();
         this.nomeCompleto = pessoa.getNomeCompleto();
         this.dataNascimento = pessoa.getDataNascimento();
-        //this.enderecoPrincipal = enderecoPrincipal;
+        this.enderecoPrincipal = enderecoPrincipal;
     }
 
 }

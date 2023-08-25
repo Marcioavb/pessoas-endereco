@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Entity
 public class Pessoa {
@@ -40,7 +40,5 @@ public class Pessoa {
         this.nomeCompleto = alteraPessoaRequest.getNomeCompleto();
         this.dataNascimento = alteraPessoaRequest.getDataNascimento();
         this.dataHoraDaUltimaAlteracao = LocalDateTime.now();
-
-
     }
 }

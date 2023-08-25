@@ -2,12 +2,15 @@ package com.wakanda.pessoas.endereco.endereco.infra;
 
 import com.wakanda.pessoas.endereco.endereco.application.repository.EnderecoRepository;
 import com.wakanda.pessoas.endereco.endereco.domain.Endereco;
+import com.wakanda.pessoas.endereco.endereco.domain.enums.TipoEndereco;
 import com.wakanda.pessoas.endereco.handler.APIException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
 
 @Repository
 @Log4j2
@@ -21,9 +24,17 @@ public class EnderecoInfraRepository implements EnderecoRepository {
         try {
             enderecoSpringDataJPARepository.save(endereco);
         } catch (DataIntegrityViolationException e) {
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Endereço com esse lagradouro, já foi cadastrado", e);
+            throw APIException.build(HttpStatus.BAD_REQUEST,
+                    "Endereço com esse lagradouro, já foi cadastrado", e);
         }
         log.info("[finaliza] EnderecoInfraRepository - salvaEndereco");
+        return endereco;
+    }
+    @Override
+    public Endereco findEnderecoPrincipal(UUID idPessoa, TipoEndereco principal) {
+        log.info("[inicia] EnderecoInfraRepository - findEnderecoPrincipal");
+        Endereco endereco = enderecoSpringDataJPARepository.findByIdPessoaCadastroAndTipoEndereco(idPessoa, principal);
+        log.info("[finaliza] EnderecoInfraRepository - findEnderecoPrincipal");
         return endereco;
     }
 }
