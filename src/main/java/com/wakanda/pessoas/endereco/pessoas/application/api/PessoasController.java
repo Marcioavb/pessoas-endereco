@@ -15,8 +15,8 @@ public class PessoasController implements PessoasAPI {
     @Override
     public PessoaResponse criaPessoa(PessoaRequest pessoaRequest) {
         log.info("[inicia] PessoaController - criaPessoa");
-        // PessoaResponse pessoaResponse = pessoaService.criaPessoa(pessoaRequest);
+        PessoaResponse pessoaCriada = pessoaService.criaPessoa(pessoaRequest);
         log.info("[finaliza] PessoaController - criaPessoa");
-        return null;
+        return pessoaCriada;
     }
 }

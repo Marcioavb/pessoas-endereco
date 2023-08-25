@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /pessoas-endereco/API
+    context-path: /pessoa-endereco/API
 
 spring:
   datasource:
