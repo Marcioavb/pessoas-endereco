@@ -42,4 +42,14 @@ public class Endereco {
 
     private LocalDateTime dataHoraDoCadastro;
 
+    public Endereco(UUID idPessoaCadastro, String lagradouro, String cep,
+                    String numero, String cidade, TipoEndereco tipoEndereco, LocalDateTime dataHoraDoCadastro) {
+        this.idPessoaCadastro = idPessoaCadastro;
+        this.lagradouro = lagradouro;
+        this.cep = cep;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.tipoEndereco = tipoEndereco;
+        this.dataHoraDoCadastro = LocalDateTime.now();
+    }
 }
