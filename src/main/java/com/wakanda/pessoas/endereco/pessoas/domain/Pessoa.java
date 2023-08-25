@@ -1,5 +1,6 @@
 package com.wakanda.pessoas.endereco.pessoas.domain;
 
+import com.wakanda.pessoas.endereco.pessoas.application.api.AlteraPessoaRequest;
 import com.wakanda.pessoas.endereco.pessoas.application.api.PessoaRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,5 +34,13 @@ public class Pessoa {
         this.nomeCompleto = pessoaRequest.getNomeCompleto();
         this.dataNascimento = pessoaRequest.getDataNascimento();
         this.dataHoraDoCadastro = LocalDateTime.now();
+    }
+
+    public void altera(AlteraPessoaRequest alteraPessoaRequest) {
+        this.nomeCompleto = alteraPessoaRequest.getNomeCompleto();
+        this.dataNascimento = alteraPessoaRequest.getDataNascimento();
+        this.dataHoraDaUltimaAlteracao = LocalDateTime.now();
+
+
     }
 }

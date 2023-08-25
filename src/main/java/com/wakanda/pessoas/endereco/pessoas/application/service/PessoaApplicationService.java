@@ -1,9 +1,6 @@
 package com.wakanda.pessoas.endereco.pessoas.application.service;
 
-import com.wakanda.pessoas.endereco.pessoas.application.api.ConsultaPessoaResponse;
-import com.wakanda.pessoas.endereco.pessoas.application.api.ListaPessoasResponse;
-import com.wakanda.pessoas.endereco.pessoas.application.api.PessoaRequest;
-import com.wakanda.pessoas.endereco.pessoas.application.api.PessoaResponse;
+import com.wakanda.pessoas.endereco.pessoas.application.api.*;
 import com.wakanda.pessoas.endereco.pessoas.application.repository.PessoaRepository;
 import com.wakanda.pessoas.endereco.pessoas.domain.Pessoa;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +43,14 @@ public class PessoaApplicationService implements PessoaService {
         //Endereco enderecoPrincipal = enderecoRepository.findEnderecoPrincipal(idPessoa, TipoEndereco.PRINCIPAL);
         log.info("[finaliza] PessoaApplicationService - consultaPessoaAtravesId");
         return new ConsultaPessoaResponse(pessoa);
+    }
+
+    @Override
+    public void editaPessoa(UUID idPessoa, AlteraPessoaRequest alteraPessoaRequest) {
+        log.info("[inicia] PessoaApplicationService - editaPessoa");
+        Pessoa pessoa = pessoaRepository.consultaPessoaAtravezId(idPessoa);
+        pessoa.altera(alteraPessoaRequest);
+        pessoaRepository.salva(pessoa);
+        log.info("[finaliza] PessoaApplicationService - editaPessoa");
     }
 }

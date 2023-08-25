@@ -39,4 +39,13 @@ public class PessoasController implements PessoasAPI {
         log.info("[finaliza] PessoaController - consultaPessoaAtravesId");
         return cpnsultaPessoa;
     }
+
+    @Override
+    public void alteraPessoa(UUID idPessoa, AlteraPessoaRequest alteraPessoaRequest) {
+        log.info("[inicia] PessoaController - editaPessoa");
+        log.info("[idPessoa] {}", idPessoa);
+        pessoaService.editaPessoa(idPessoa, alteraPessoaRequest);
+        log.info("[finaliza] PessoaController - editaPessoa");
+
+    }
 }
