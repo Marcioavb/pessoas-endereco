@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.wakanda.pessoas.endereco.endereco.application.api.EnderecoRequest;
 import com.wakanda.pessoas.endereco.endereco.domain.enums.TipoEndereco;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -32,9 +33,9 @@ public class Endereco {
     @Column(unique = true)
     private String lagradouro;
     @NotBlank
-    private String cep;
-    @NotBlank
     private String numero;
+    @NotBlank
+    private String cep;
     @NotBlank
     private String cidade;
     @NotNull
@@ -42,14 +43,13 @@ public class Endereco {
 
     private LocalDateTime dataHoraDoCadastro;
 
-    public Endereco(UUID idPessoaCadastro, String lagradouro, String cep,
-                    String numero, String cidade, TipoEndereco tipoEndereco, LocalDateTime dataHoraDoCadastro) {
-        this.idPessoaCadastro = idPessoaCadastro;
-        this.lagradouro = lagradouro;
-        this.cep = cep;
-        this.numero = numero;
-        this.cidade = cidade;
-        this.tipoEndereco = tipoEndereco;
+    public Endereco(UUID idPessoa, EnderecoRequest enderecoRequest) {
+        this.idPessoaCadastro = idPessoa;
+        this.lagradouro = enderecoRequest.getLagradouro();
+        this.cep = enderecoRequest.getCep();
+        this.numero = enderecoRequest.getNumero();
+        this.cidade = enderecoRequest.getCidade();
+        this.tipoEndereco = enderecoRequest.getTipoEndereco();
         this.dataHoraDoCadastro = LocalDateTime.now();
     }
 }

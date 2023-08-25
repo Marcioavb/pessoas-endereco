@@ -10,8 +10,8 @@ import java.util.UUID;
 @RequestMapping("/v1/endereco")
 public interface EnderecoAPI {
 
-    @PostMapping (value = "/{idPessoa}")
+    @PostMapping(value = "/{idPessoa}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    EndrecoResponse criaEndereco(@PathVariable UUID idPessoa,
-                                 @Valid @RequestBody EnderecoRequest enderecoRequest);
+    EnderecoResponse criaEndereco(@PathVariable UUID idPessoa,
+                                  @Valid @RequestBody EnderecoRequest enderecoRequest);
 }
