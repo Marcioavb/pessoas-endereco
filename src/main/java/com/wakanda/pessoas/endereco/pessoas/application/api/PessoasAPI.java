@@ -1,8 +1,7 @@
 package com.wakanda.pessoas.endereco.pessoas.application.api;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -10,5 +9,7 @@ import javax.validation.Valid;
 @RequestMapping("/v1/pessoa")
 public interface PessoasAPI {
 
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
     PessoaResponse criaPessoa(@Valid @RequestBody PessoaRequest pessoaRequest);
 }

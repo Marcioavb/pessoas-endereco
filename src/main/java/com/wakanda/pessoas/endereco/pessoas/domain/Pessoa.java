@@ -1,4 +1,4 @@
-package com.wakanda.pessoas.endereco.pessoas;
+package com.wakanda.pessoas.endereco.pessoas.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
