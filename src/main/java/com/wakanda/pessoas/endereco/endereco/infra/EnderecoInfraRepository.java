@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -30,6 +31,15 @@ public class EnderecoInfraRepository implements EnderecoRepository {
         log.info("[finaliza] EnderecoInfraRepository - salvaEndereco");
         return endereco;
     }
+
+    @Override
+    public List<Endereco> listaEnderecosDaPessoa(UUID idPessoa) {
+        log.info("[inicia] EnderecoInfraRepository - listaEnderecosDaPessoa");
+        List<Endereco> enderecos = enderecoSpringDataJPARepository.findAll();
+        log.info("[finaliza] EnderecoInfraRepository - listaEnderecosDaPessoa");
+        return enderecos;
+    }
+
     @Override
     public Endereco findEnderecoPrincipal(UUID idPessoa, TipoEndereco principal) {
         log.info("[inicia] EnderecoInfraRepository - findEnderecoPrincipal");

@@ -2,6 +2,7 @@ package com.wakanda.pessoas.endereco.endereco.application.service;
 
 import com.wakanda.pessoas.endereco.endereco.application.api.EnderecoRequest;
 import com.wakanda.pessoas.endereco.endereco.application.api.EnderecoResponse;
+import com.wakanda.pessoas.endereco.endereco.application.api.ListaEnderecosResponse;
 import com.wakanda.pessoas.endereco.endereco.application.repository.EnderecoRepository;
 import com.wakanda.pessoas.endereco.endereco.domain.Endereco;
 import com.wakanda.pessoas.endereco.pessoas.application.service.PessoaService;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -25,5 +27,14 @@ public class EnderecoApplicationService implements EnderecoService {
                 .salvaEndereco(new Endereco(idPessoa, enderecoRequest));
         log.info("[finaliza] EnderecoApplicationService - criaEndereco");
         return new EnderecoResponse(endereco.getIdEndereco());
+    }
+
+    @Override
+    public List<ListaEnderecosResponse> listaEnderecosDaPessoa(UUID idPessoa) {
+        log.info("[inicia] EnderecoApplicationService - listaEnderecosDaPessoa");
+        pessoaService.consultaPessoaAtravesId(idPessoa);
+        List<Endereco> enderecos = enderecoRepository.listaEnderecosDaPessoa(idPessoa);
+        log.info("[finaliza] EnderecoApplicationService - listaEnderecosDaPessoa");
+        return ListaEnderecosResponse.converte(enderecos) ;
     }
 }
